@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Auto Citation Insertion for Zotero",
+  "author": "W-aPoint",
+  "version": "1.1.2",
+  "description": "Convert Scannable Cite markers from Word with ODF/DOCX Scan and file the cited items in a Zotero collection.",
+  "applications": {
+    "zotero": {
+      "id": "word-zotero-scan@wordscan.local",
+      "update_url": "https://raw.githubusercontent.com/W-aPoint/zotero-auto-citation-insertion/main/updates.json",
+      "strict_min_version": "7.0",
+      "strict_max_version": "10.0.*"
+    }
+  },
+  "homepage_url": "https://github.com/W-aPoint/zotero-auto-citation-insertion"
+}

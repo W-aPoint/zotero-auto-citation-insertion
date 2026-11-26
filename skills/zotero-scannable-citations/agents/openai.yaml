@@ -1,0 +1,6 @@
+interface:
+  display_name: "Zotero 扫描标记引文"
+  short_description: "按原格式在句中放入真实引文标记，返回可粘贴正文，由用户自行操作 Word 和 Zotero"
+  default_prompt: "使用 $zotero-scannable-citations，按我提供的条目把 Scannable Cite 标记放在对应句子里，把标好的正文发给我，Word 和 Zotero 由我操作。"
+policy:
+  allow_implicit_invocation: true
