@@ -3,9 +3,9 @@
     "word-zotero-scan@wordscan.local": {
       "updates": [
         {
-          "version": "1.1.2",
-          "update_link": "https://github.com/W-aPoint/zotero-auto-citation-insertion/releases/download/v1.1.2/WordZoteroScan.xpi",
-          "update_hash": "sha256:6989fe1373831f96b92befb993b1fcbbdfff2e2ee7b82be8229e733d45aaf27f",
+          "version": "1.2.0",
+          "update_link": "https://github.com/W-aPoint/zotero-auto-citation-insertion/releases/download/v1.2.0/WordZoteroScan.xpi",
+          "update_hash": "sha256:0fa1bdaf9f24de87ce835d6cd7f8ea2b02a1d397ac8332d6422a2eccd44ba2e7",
           "applications": {
             "zotero": {
               "strict_min_version": "7.0",

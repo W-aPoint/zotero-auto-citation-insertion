@@ -2,50 +2,48 @@
 
 **简体中文** · [English](README.en.md)
 
-把 Zotero 的纯文本引文标记放在它所支持的句子旁。准备好稿件后，在 Word 里把光标放到参考文献表应出现的位置，点击一次按钮，选择 Zotero 分类。按钮在原句位置转换引文，把文中引用的条目加入所选分类，再调用 Zotero 原生的 **Add/Edit Bibliography**。
+先告诉 Skill 论文要归入哪个 Zotero 分类，以及引文标记要写到哪里。Skill 可以在 Zotero 桌面端关闭时把书目记录导入指定分类，并在你选择的 Word 原稿或副本里放好五字段标记。**真正转换成活动引文，以及在光标处生成参考文献表，由你在 Word 里亲自确认。**
 
-[下载 Windows 安装包](https://github.com/W-aPoint/zotero-auto-citation-insertion/releases/latest/download/Zotero-Auto-Citation-Insertion-Windows.zip) · [单独下载 Zotero 配套扩展](https://github.com/W-aPoint/zotero-auto-citation-insertion/releases/latest/download/WordZoteroScan.xpi)
+[下载 Windows 完整包](https://github.com/W-aPoint/zotero-auto-citation-insertion/releases/latest/download/Zotero-Auto-Citation-Insertion-Windows.zip) · [单独下载 Zotero 配套扩展](https://github.com/W-aPoint/zotero-auto-citation-insertion/releases/latest/download/WordZoteroScan.xpi)
 
-## 安装 Word 按钮
+## 怎样给 Skill 下任务
 
-需要 Windows 桌面版 Microsoft Word、Zotero 桌面端及其 Word 插件。已核验这套流程使用的 Zotero 版本为 10.0.8，ODF/DOCX Scan 版本为 3.2.2。Word 按钮和分类选择窗口使用中文。
+> 目标是个人库「我的课题 → 参考文献」。请配合 Consensus 给引言第二段查找并核实文献，归入这个分类。把五字段标记直接写进我提供的 Word 原稿。最后我自己在 Word 里确认转换。
 
-1. 安装上游 [ODF/DOCX Scan](https://zotero-odf-scan.github.io/zotero-odf-scan/)。在 Zotero 中打开 **工具 → 插件**，将上游下载的 `.xpi` 拖入窗口。它提供 Scannable Cite 导出格式及 DOCX 转换器。
-2. 下载并解压本项目的 Windows 安装包。保存手头的文档并关闭 Word，在解压目录打开 **Windows PowerShell**，运行 `.\Install.ps1`。它为当前 Windows 用户注册 Word 按钮，并创建 Word 和 Zotero 在本机通信的配对信息。
-3. 在 Zotero 的 **工具 → 插件** 中安装压缩包里的 `dist/WordZoteroScan.xpi`。重新打开 Word，在 **引用 → Zotero** 中可以看到 **扫描并插入参考文献表**。
+每次任务先确定两件事。**目标分类**写明个人库或群组库，以及分类完整路径。同名分类可用父级路径或分类键区分。**稿件处理方式**可以选下面任何一种。已经说明的选择会直接沿用。
 
-如安装程序无法识别 Word 位数，在 Word 的 **文件 → 账户 → 关于 Word** 查看位数，再运行 `.\Install.ps1 -WordArchitecture x86` 或 `.\Install.ps1 -WordArchitecture x64`。
+| 你的选择 | 收到的结果 |
+| --- | --- |
+| 直接写入原稿 | 指定 DOCX 中的对应句子加入纯文本标记，交付路径就是原路径。 |
+| 另存副本 | 在你指定的新 DOCX 路径写入标记，原稿保留。 |
+| 只返回文字 | 在回复里给出标好的原句或段落，由你自行粘贴。 |
 
-## 从一句话到参考文献表
+## 归档、标注与确认
 
-1. **取得条目的真实标记。** 在 Zotero 的 **设置 → 导出** 中将快速复制格式设为 **Scannable Cite**。选中文献，按 `Ctrl+Alt+C` 复制，把标记贴在所支持的句子旁。同处合引时，多个标记直接相连。下面只示意个人库标记的形状，实际写作时请用自己复制的整条标记。
+1. **查证论文。** 推荐在助手中启用 **Consensus 插件**（如可用，可直接提及 `@Consensus`）寻找支持某句话的候选研究，再核对原论文或 PubMed、出版社记录中的题名、作者、年份、DOI 或 PMID。已有文献可以直接核对。[Consensus](https://consensus.app/)
+2. **归入指定分类。** 对已同步的个人库或群组库，Skill 可通过 Zotero Web API 复用已有条目，或导入缺失的文献并加入目标分类。它回读分类成员关系和真实条目键后再生成标记。此步需要该文库的云端读写授权，可以关闭桌面 Zotero。若文库仅存于本机，或未授权云端写入，可在桌面端手动归档后提供已核验的标记。[归档命令与凭据配置](skills/zotero-word-workflow/references/preparation.md) · [Zotero 官方写入接口](https://www.zotero.org/support/dev/web_api/v3/write_requests)
+3. **按选择写入标记。** 原稿和副本使用同一套五字段纯文本格式。同处多篇文献的标记紧邻排列。文件级写入前，请保存并关闭该 Word 文档。选择“只返回文字”时可以继续编辑。下面示意带页码的个人库标记，实际条目键在归档时取得。
 
    ```text
    { | <作者>, (<年份>) |p. 45 | |zu:<用户ID>:<条目键>}
    ```
 
-2. **把光标放到书目的起始位置。** 例如放在“参考文献”标题下的空行。点击 Word **引用 → Zotero → 扫描并插入参考文献表**。
-3. **选择归档分类。** 选择与这些条目属于同一个 Zotero 文库的可写分类，再点 **插入或编辑参考文献表**。按钮在每条标记原处创建可编辑引文，保留已有活动引文，并将文中引用的条目加入该分类。已归档的条目可重复运行。
-4. **核对并保存。** 新文档会在原光标处生成书目。如果 Zotero 提示选择引文样式，请选择所需样式。文档已有活动书目时，按钮打开原书目的编辑窗口。书目内容来自文中引文，所选分类只负责归档。核对后按平常方式保存 Word 文档。
+4. **作者在 Word 确认。** 打开 Zotero，等刚归档的条目同步到本机。打开已标记的稿件，将光标放到书目应开始的位置，点 Word **引用 → Zotero → 扫描并插入参考文献表**，核对与前面相同的分类，然后亲自点 **确认转换引文并打开参考文献表**。仅选择分类或取消都不会转换引文。确认后，标记在原句处转为活动引文，原生 **Add/Edit Bibliography** 在原光标处生成书目。已有活动书目时，Zotero 打开原书目的编辑窗口。检查结果后保存。[Zotero 同步说明](https://www.zotero.org/support/sync) · [Word 插件说明](https://www.zotero.org/support/word_processor_plugin_usage)
 
-按钮支持正文（含表格）、脚注和尾注中的标记。如果标记位于页眉、页脚或文本框中，按钮会提示用户处理。
+所选分类用于收纳文中引用的文献。书目由稿件中的引文决定。按钮支持正文（含表格）、脚注和尾注，遇到页眉、页脚或文本框中的标记会提示处理。
 
-## 只需要在回复中准备引文标记
+## 安装
 
-仓库提供两个可复制到技能目录的文件夹。日常写作用 [zotero-word-workflow](skills/zotero-word-workflow/SKILL.md)。如需将既有数字引文按已核实的映射排成标记，可用 [zotero-scannable-citations](skills/zotero-scannable-citations/SKILL.md)。
+**Skill。** 把 [skills](skills) 下的两个文件夹作为同级目录，复制到 Codex 的 `~/.codex/skills/`，或你配置的 AntiGravity 技能目录，例如 `~/.gemini/config/skills/`。[zotero-word-workflow](skills/zotero-word-workflow/SKILL.md) 负责归档和标注，[zotero-scannable-citations](skills/zotero-scannable-citations/SKILL.md) 也提供数字引文映射和只读校验。云端助手程序使用 Python 3.10+ 标准库，直接标注 DOCX 还需安装 `lxml`。将云端密钥保存在本机环境变量 `ZOTERO_API_KEY` 中。[命令和输入示例](skills/zotero-word-workflow/references/preparation.md)
 
-将 [skills](skills) 下的两个文件夹作为同级目录复制到所用助手的技能目录。Codex 通常使用 `~/.codex/skills/`。在使用 `~/.gemini/config/skills/` 的 AntiGravity 配置里可放到该目录。向助手提供正文和从 Zotero 复制的真实标记，例如：
+**Word 按钮（Windows 桌面版 Word）。**
 
-> 用 zotero-word-workflow 把这两篇文献标在对应句子旁，把标好的段落发给我。Word 和 Zotero 由我操作。
+1. 安装 Zotero 桌面端、Zotero 的 Word 插件和上游 [ODF/DOCX Scan](https://zotero-odf-scan.github.io/zotero-odf-scan/)。在 Zotero 的 **工具 → 插件** 窗口安装上游 `.xpi`。其转换器和 Scannable Cite 导出格式由上游提供。
+2. 解压本项目的 Windows 完整包。保存并关闭 Word，在解压目录用 Windows PowerShell 运行 `.\Install.ps1`。程序为当前 Windows 用户注册 Word 按钮。如果无法自动识别 Word 位数，可按 **文件 → 账户 → 关于 Word** 显示的位数传入 `-WordArchitecture x86` 或 `-WordArchitecture x64`。
+3. 在 Zotero 的 **工具 → 插件** 中安装包内的 `dist/WordZoteroScan.xpi`，重新打开 Word。按钮位于 **引用 → Zotero**。已有工作流核验所用的版本为 Zotero 10.0.8 和 ODF/DOCX Scan 3.2.2。
 
-助手在回复中交付可粘贴正文。你本人负责粘贴、选择分类和运行扫描。只使用 Skill 时，也可自行运行上游 **ODF Scan**，打开转换后的 DOCX，再在 Word 的 **Zotero** 选项卡把书目插到光标处。[ODF/DOCX Scan 使用说明](https://zotero-odf-scan.github.io/zotero-odf-scan/) · [Zotero 官方 Word 说明](https://www.zotero.org/support/word_processor_plugin_usage)
+也可由作者使用上游 **ODF Scan** 手动扫描文件，再打开输出的 DOCX，在 Word 的 Zotero 选项卡点击 **Add/Edit Bibliography**。[上游手工扫描说明](https://zotero-odf-scan.github.io/zotero-odf-scan/)
 
 ## 源码与许可
 
-[Word 加载项](WordAddin) · [Zotero 配套扩展](zotero) · [构建脚本](Build.ps1)。从源码构建时，在安装了 .NET Framework 编译器及 Office 主互操作程序集的 Windows 电脑上运行 `.\Build.ps1`。输出位于 `dist/`。可用 Python 3 运行随附标记校验器的离线测试：
-
-```sh
-python skills/zotero-scannable-citations/scripts/test_validate_scan_docx.py
-```
-
-本项目以 [MIT 许可证](LICENSE)发布。引文转换由另行安装的上游 ODF/DOCX Scan 提供，书目排版由 Zotero 的 Word 插件完成。Word 按钮通过本机回环地址与 Zotero 通信，仅传递转换与归档所需的标记和条目标识。
+[Word 加载项](WordAddin) · [Zotero 扩展](zotero) · [测试](tests) · [MIT 许可证](LICENSE)。从源码构建时，在有 .NET Framework 编译器和 Office 主互操作程序集的 Windows 电脑上运行 `.\Build.ps1`，输出位于 `dist/`。

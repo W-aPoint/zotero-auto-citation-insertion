@@ -1,5 +1,7 @@
 # 标记、映射与转换
 
+使用 Skill 时先确定目标文库和分类，并记录作者选择的原稿、副本或仅回复。云端归档和写入原 DOCX 的方法见[分类与稿件准备](../../zotero-word-workflow/references/preparation.md)。下文的插件转换由作者在 Word 确认后执行，或由作者自行使用上游扫描器。
+
 ## 五字段 Scannable Cite
 
 ```text
@@ -62,7 +64,7 @@ python scripts/validate_scan_docx.py scan.docx --mapping map.json --report qa.js
 
 ODF/DOCX Scan 是额外插件；“内置 RTF Scan”不是它的别名。先确认插件已启用、版本支持 DOCX，以及 Zotero Word 插件可用。DOCX 路线用 Microsoft Word；ODT 路线用 LibreOffice 和对应的 Zotero 插件。不要通过修改文件扩展名代替格式转换。
 
-扫描方向选择 **Markers → Zotero citations**，选择扫描稿并另存结果；Word 中 **Document Preferences → 样式 → Refresh → Add/Edit Bibliography**。转换按钮名称随版本变化，以实际菜单为准。脚注、尾注、文本框及新旧活动引文混合的稿件，应先做小样确认；扫描器是否处理某类 OOXML 部件不能仅从本脚本能读取该部件推断。
+使用本项目的 Word 按钮时，在稿件内设置书目光标，核对目标分类，再明确确认引文转换。作者选择上游独立扫描器时，选择 **Markers → Zotero citations**、扫描稿和输出路径，然后在 Word 中选择样式，按需使用 **Refresh** 和 **Add/Edit Bibliography**。按钮名称随版本变化，以实际菜单为准。脚注、尾注、文本框及新旧引文混合的稿件按实际转换效果检查。
 
 既有文献表可能含未在正文引用的背景文献，或者 Zotero Bibliography 设置了 uncited/omitted/custom 条目。不要一律断言“参考文献条数必须等于正文唯一文献数”；先解释配置差异。正常纯正文引文且无特殊配置时才检查相等。
 

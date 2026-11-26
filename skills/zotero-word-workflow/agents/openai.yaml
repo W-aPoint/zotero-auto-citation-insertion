@@ -1,4 +1,4 @@
 interface:
-  display_name: "Zotero 正文引文标记"
-  short_description: "按原格式在句中放入真实引文标记，返回可粘贴正文，由用户自行操作 Word 和 Zotero"
-  default_prompt: "使用 $zotero-word-workflow，按我提供的条目把 Scannable Cite 标记放在对应句子里，把标好的正文发给我，Word 和 Zotero 由我操作。"
+  display_name: "Zotero 分类归档与正文引文标记"
+  short_description: "按指定分类归档文献，在原稿、副本或回复中写入标记，由作者在 Word 确认转换"
+  default_prompt: "使用 $zotero-word-workflow，先确认我的 Zotero 分类和原稿、副本或回复的选择。需要时用 Consensus 查证文献，将书目归档并标好原句，最终活动引文由我在 Word 内确认。"

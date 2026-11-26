@@ -9,7 +9,7 @@ using Office = Microsoft.Office.Core;
 using Word = Microsoft.Office.Interop.Word;
 
 [assembly: ComVisible(false)]
-[assembly: System.Reflection.AssemblyVersion("1.1.2.0")]
+[assembly: System.Reflection.AssemblyVersion("1.2.0.0")]
 namespace WordZoteroScan {
     [ComVisible(true), Guid("7AF39E18-5D4B-4ABE-8E90-661588B28E11")]
     [InterfaceType(ComInterfaceType.InterfaceIsIDispatch)]
@@ -61,10 +61,10 @@ namespace WordZoteroScan {
 
     internal sealed class CollectionPicker : Form {
         readonly TreeView tree = new TreeView { Dock = DockStyle.Fill, HideSelection = false, ShowLines = true };
-        readonly Button submit = new Button { Text = "插入或编辑参考文献表", AutoSize = true, Enabled = false };
+        readonly Button submit = new Button { Text = "确认转换引文并打开参考文献表", AutoSize = true, Enabled = false };
         internal CollectionRow Selected { get { return tree.SelectedNode == null ? null : tree.SelectedNode.Tag as CollectionRow; } }
         internal CollectionPicker(CollectionRow[] rows) {
-            Text = "选择 Zotero 分类";
+            Text = "核对目标 Zotero 分类并确认引文转换";
             Font = SystemFonts.MessageBoxFont;
             StartPosition = FormStartPosition.CenterParent;
             MinimizeBox = MaximizeBox = false;
@@ -75,7 +75,7 @@ namespace WordZoteroScan {
             var cancel = new Button { Text = "取消", DialogResult = DialogResult.Cancel, AutoSize = true };
             buttons.Controls.Add(cancel); buttons.Controls.Add(submit);
             Controls.Add(tree); Controls.Add(buttons);
-            AcceptButton = submit; CancelButton = cancel;
+            CancelButton = cancel;
             string last = null;
             string pref = Path.Combine(Connection.LocalFolder, "last-collection.txt");
             try { if (File.Exists(pref)) last = File.ReadAllText(pref).Trim(); } catch (IOException) {}
@@ -97,9 +97,6 @@ namespace WordZoteroScan {
                 if (Selected == null) return;
                 try { File.WriteAllText(pref, Selected.library + "/" + Selected.key); } catch (IOException) {}
                 DialogResult = DialogResult.OK;
-            };
-            tree.NodeMouseDoubleClick += delegate(object sender, TreeNodeMouseClickEventArgs e) {
-                if (e.Node.Tag is CollectionRow) { tree.SelectedNode = e.Node; submit.PerformClick(); }
             };
             foreach (TreeNode lib in tree.Nodes) lib.Expand();
             if (previous != null) { tree.SelectedNode = previous; previous.EnsureVisible(); }

@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Auto Citation Insertion for Zotero",
   "author": "W-aPoint",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Convert Scannable Cite markers from Word with ODF/DOCX Scan and file the cited items in a Zotero collection.",
   "applications": {
     "zotero": {
